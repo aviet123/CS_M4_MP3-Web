@@ -53,16 +53,37 @@
                 <!--						<span class="focus-input100"></span>-->
                 <!--					</div>-->
 
-                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                <div class="wrap-input100 " data-validate="Username is required" >
                     <span class="label-input100">Username</span>
-                    <input class="input100" type="text" th:field="*{username}" placeholder="Username...">
+                    <input class="input100" type="text" th:field="*{username}" placeholder="Username..." required
+                           minlength="3" maxlength="50">
+                    <span class="" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                </div>
+
+                <div class="wrap-input100 " data-validate = "Password is required">
+                    <span class="label-input100">Password</span>
+                    <input class="input100" type="password" th:field="*{password}" placeholder="*************" required
+                           minlength="3" maxlength="50">
+                    <span class="" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                </div>
+
+                <div class="wrap-input100 ">
+                    <span class="label-input100">Full Name</span>
+                    <input class="input100" type="text" th:field="*{name}" placeholder="Full Name...">
                     <span class="focus-input100"></span>
                 </div>
 
-                <div class="wrap-input100 validate-input" data-validate = "Password is required">
-                    <span class="label-input100">Password</span>
-                    <input class="input100" type="password" th:field="*{password}" placeholder="*************">
+                <div class="wrap-input100 ">
+                    <span class="label-input100">Address</span>
+                    <input class="input100" type="text" th:field="*{address}" placeholder="Address...">
                     <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 " data-validate = "Phone Number is required">
+                    <span class="label-input100">Phone Number</span>
+                    <input class="input100" type="text" th:field="*{phoneNumber}" placeholder="Phone Number..." required
+                           minlength="10" maxlength="11" pattern="0[0-9\s.-]{9,10}">
+                    <span class="" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
                 </div>
                 <tr>
                     <td>

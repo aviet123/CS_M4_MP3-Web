@@ -1,6 +1,6 @@
 package com.codegym.service.appuser;
 
-import com.codegym.model.AppUser;
+import com.codegym.model.user.AppUser;
 import com.codegym.repository.AppUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -32,7 +32,7 @@ public class AppUserServiceImpl implements AppUserService, UserDetailsService {
 
     @Override
     public void remove(Long id) {
-
+        appUserRepository.deleteById(id);
     }
 
     @Override

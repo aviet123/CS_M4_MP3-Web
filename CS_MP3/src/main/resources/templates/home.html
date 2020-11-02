@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <title>Melodi</title>
@@ -149,7 +149,7 @@
                             <!-- paragraph -->
                             <h3 class="animated fadeInRightBig">Find More Innovative &amp; Creative Music Albums.</h3>
                             <!-- button -->
-                            <a href="#" class="animated fadeIn btn btn-theme">Download Here</a>
+                            <a th:href="@{'/user/'+${user.id}}" class="animated fadeIn btn btn-theme">Go to enjoy Mucsic</a>
                         </div>
                     </div>
                 </div>
@@ -163,7 +163,7 @@
                             <!-- paragraph -->
                             <h3 class="animated fadeInRightBig">Lorem ipsum dolor sit amet, consectetur elit.</h3>
                             <!-- button -->
-                            <a href="#" class="animated fadeIn btn btn-theme">Listen Now</a>
+                            <a href="" class="animated fadeIn btn btn-theme">Listen Now</a>
                         </div>
                     </div>
                 </div>
@@ -214,7 +214,7 @@
                             <!-- paragraph -->
                             <p>Lorem Ipsum has been the industry's standard dummy text ever since 1500.</p>
                             <!-- button -->
-                            <a href="#" class="btn btn-lg btn-theme" id="playNowBtn"><i class="fa fa-play"></i>&nbsp; Play Now</a>
+                            <a th:href="@{'/user/'+${user.id}}" class="btn btn-lg btn-theme" id="playNowBtn"><i class="fa fa-play"></i>&nbsp; Play Now</a>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
@@ -377,7 +377,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album1.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>
                             </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
@@ -398,7 +398,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album6.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>
                             </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
@@ -419,7 +419,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album5.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>
                             </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
@@ -440,7 +440,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album4.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>
                             </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
@@ -461,7 +461,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album2.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>
                             </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
@@ -482,8 +482,7 @@
                                 <!-- image -->
                                 <img class="img-responsive" src="/hometemplate/img/album/album3.jpg" alt="" />
                                 <!-- paragraph -->
-                                <p>There are many variations of passages available, but the majority have suffered Lorem alteration in some form, by injected look even slightly believable.</p>
-                            </div>
+                                <a th:href="@{'/user/'+${user.id}}"><p>There are many variations of best music available here</p></a>                            </div>
                             <!-- featured information -->
                             <div class="featured-item-info">
                                 <!-- featured title -->

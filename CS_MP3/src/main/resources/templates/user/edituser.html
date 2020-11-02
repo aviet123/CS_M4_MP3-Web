@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -29,7 +29,7 @@
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
-            <div class="logo-src"></div>
+            <div class="fab fa-spotify fa-4x"></div>
             <div class="header__pane ml-auto">
                 <div>
                     <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -98,19 +98,18 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                        class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+                                        <img width="42" class="rounded-circle" th:src="@{${user.getImg()}}" alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
-                                    <div tabindex="-1" role="menu" aria-hidden="true">
-                                </div>
+                                    <div tabindex="-1" role="menu" aria-hidden="true"
+                                         class="dropdown-menu dropdown-menu-right">
+                                        <a href="/userprofile" tabindex="0" class="dropdown-item">User Account</a>
+                                        <a href="/logout" tabindex="0" class="dropdown-item">Logout</a>
+                                    </div>
                             </div>
                         </div>
                         <div class="widget-content-left  ml-3 header-user-info">
-                            <div class="widget-heading">
-                                Alina Mclourd
-                            </div>
-                            <div class="widget-subheading">
-                                VP People Manager
+                            <div class="widget-heading" th:text="${user.name}">
                             </div>
                         </div>
                         <div class="widget-content-right header-user-info ml-3">
@@ -542,7 +541,7 @@
                     </li>
                     <li>
                         <a href="index.html" class="mm-active">
-                            <i class="metismenu-icon fas fa-"></i>
+                            <i class="metismenu-icon fas fa-pencil-alt"></i>
                             Thay đổi password
                         </a>
                     </li>
@@ -570,45 +569,34 @@
             </div>
             <div class="row">
                 <div class="card-body"><h5 class="card-title">Grid</h5>
-                    <form class="">
-                        <div class="position-relative row form-group"><label for="exampleEmail"
-                                                                             class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10"><input name="email" id="exampleEmail"
-                                                          placeholder="with a placeholder" type="email"
-                                                          class="form-control"></div>
+                    <form class="" action="/edit" method="post" th:object="${user}" enctype="multipart/form-data">
+                        <input type="text" hidden th:field="*{id}">
+                        <input type="text" hidden th:field="*{password}">
+                        <input type="text" hidden th:field="*{appRole}">
+                        <div class="position-relative row form-group">
+                            <label for="exampleEmail" class="col-sm-2 col-form-label">Name</label>
+                            <div class="col-sm-10"><input id="exampleEmail" class="form-control" th:field="*{name}"></div>
                         </div>
-                        <div class="position-relative row form-group"><label for="exampleEmail"
-                                                                             class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10"><input name="email" placeholder="with a placeholder" type="email"
-                                                          class="form-control"></div>
+                        <div class="position-relative row form-group">
+                            <label for="exampleEmail" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10"><input  class="form-control" th:field="*{username}"></div>
                         </div>
-                        <div class="position-relative row form-group"><label for="exampleEmail"
-                                                                             class="col-sm-2 col-form-label">Address</label>
-                            <div class="col-sm-10"><input name="email" placeholder="with a placeholder" type="email"
-                                                          class="form-control"></div>
+                        <div class="position-relative row form-group">
+                            <label for="exampleEmail" class="col-sm-2 col-form-label">Address</label>
+                            <div class="col-sm-10"><input  class="form-control" th:field="*{address}"></div>
                         </div>
-                        <div class="position-relative row form-group"><label for="examplePassword"
-                                                                             class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10"><input name="password" id="examplePassword"
-                                                          placeholder="password placeholder" type="password"
-                                                          class="form-control"></div>
+                        <div class="position-relative row form-group">
+                            <label for="exampleEmail" class="col-sm-2 col-form-label">Phone Number</label>
+                            <div class="col-sm-10"><input  class="form-control" th:field="*{phoneNumber}"></div>
                         </div>
-                        <div class="position-relative row form-group"><label for="exampleSelect"
-                                                                             class="col-sm-2 col-form-label">Select</label>
-                            <div class="col-sm-10"><select name="select" id="exampleSelect"
-                                                           class="form-control"></select></div>
-                        </div>
-                        <div class="position-relative row form-group"><label for="exampleFile"
-                                                                             class="col-sm-2 col-form-label">Image</label>
-                            <div class="col-sm-10"><input name="file" id="exampleFile" type="file"
-                                                          class="form-control-file">
-                                <small class="form-text text-muted">This is some placeholder block-level help text
-                                    for the above input. It's a bit lighter and easily wraps to a new line.</small>
+                        <div class="position-relative row form-group">
+                            <label for="exampleFile" class="col-sm-2 col-form-label">Image</label>
+                            <div class="col-sm-10"><input id="exampleFile" type="file" class="form-control-file" th:field="*{avatar}">
                             </div>
                         </div>
                         <div class="position-relative row form-check">
                             <div class="col-sm-10 offset-sm-2">
-                                <button class="btn btn-secondary">Submit</button>
+                                <button type="submit" class="btn btn-secondary">Edit User</button>
                             </div>
                         </div>
                     </form>

@@ -1,9 +1,11 @@
-package com.codegym.model;
+package com.codegym.model.user;
 
 
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -12,15 +14,21 @@ public class AppUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, unique = true)
+    @Size(min = 3,max = 50)
     private String username;
 
+    @Column(nullable = false)
+    @Size(min = 3,max = 50)
     private String password;
 
     private String name;
 
     private String address;
 
-    private int phoneNumber;
+    @Pattern(regexp = "0[0-9\\s.-]{9,10}",message = "Wrong format number!!! please try again")
+    @Column(nullable = false)
+    private String phoneNumber;
 
     private String img;
 
@@ -73,11 +81,11 @@ public class AppUser {
         this.address = address;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

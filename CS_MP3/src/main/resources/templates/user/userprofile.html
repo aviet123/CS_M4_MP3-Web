@@ -30,7 +30,7 @@
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
     <div class="app-header header-shadow">
         <div class="app-header__logo">
-            <div class="fas fa-user-circle fa-4x"></div>
+            <div class="fab fa-spotify fa-4x"></div>
             <div class="header__pane ml-auto">
                 <div>
                     <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
@@ -99,26 +99,18 @@
                                 <div class="btn-group">
                                     <a data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                                        class="p-0 btn">
-                                        <img width="42" class="rounded-circle" src="assets/images/avatars/1.jpg" alt="">
+                                        <img width="42" class="rounded-circle" th:src="@{${user.getImg()}}" alt="">
                                         <i class="fa fa-angle-down ml-2 opacity-8"></i>
                                     </a>
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu dropdown-menu-right">
-                                        <button type="button" tabindex="0" class="dropdown-item">User Account</button>
-                                        <button type="button" tabindex="0" class="dropdown-item">Settings</button>
-                                        <h6 tabindex="-1" class="dropdown-header">Header</h6>
-                                        <button type="button" tabindex="0" class="dropdown-item">Actions</button>
-                                        <div tabindex="-1" class="dropdown-divider"></div>
-                                        <button type="button" tabindex="0" class="dropdown-item">Dividers</button>
+                                        <a href="/userprofile" tabindex="0" class="dropdown-item">User Account</a>
+                                        <a href="/logout" tabindex="0" class="dropdown-item">Logout</a>
                                     </div>
                                 </div>
                             </div>
                             <div class="widget-content-left  ml-3 header-user-info">
-                                <div class="widget-heading">
-                                    Alina Mclourd
-                                </div>
-                                <div class="widget-subheading">
-                                    VP People Manager
+                                <div class="widget-heading" th:text="${user.name}">
                                 </div>
                             </div>
                             <div class="widget-content-right header-user-info ml-3">
@@ -550,7 +542,7 @@
                         </li>
                         <li>
                             <a href="index.html" class="mm-active">
-                                <i class="metismenu-icon fas fa-user-edit"></i>
+                                <i class="metismenu-icon fas fa-pencil-alt"></i>
                                 Thay đổi password
                             </a>
                         </li>
@@ -579,15 +571,21 @@
                 <div class="row">
                     <div class="card-body"><h5 class="card-title">Thông tin người dùng</h5>
                         <table class="mb-0 table">
-                            <thead>
-                            <tr>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                            </tr>
-                            </thead>
                             <tbody>
                             <tr>
-                                <th scope="row" th:text="${user.name}"></th>
+                                <th scope="row" >Full Name</th>
+                                <td th:text="${user.name}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" >Name Account</th>
+                                <td th:text="${user.username}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" >Address</th>
+                                <td th:text="${user.address}"></td>
+                            </tr>
+                            <tr>
+                                <th scope="row" >Phone Number</th>
                                 <td th:text="${user.phoneNumber}"></td>
                             </tr>
                             </tbody>
