@@ -529,6 +529,12 @@
                     <ul class="vertical-nav-menu">
                         <li class="app-sidebar__heading">User Profile</li>
                         <li>
+                            <a th:href="@{'/user/'+${user.id}}" class="mm-active">
+                                <i class="metismenu-icon fas fa-user"></i>
+                                Trang chủ nghe nhạc
+                            </a>
+                        </li>
+                        <li>
                             <a href="/userprofile" class="mm-active">
                                 <i class="metismenu-icon fas fa-user"></i>
                                 Thông tin người dùng

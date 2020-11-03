@@ -97,8 +97,10 @@ public class CategoryController {
 
     @PostMapping("/edit")
     public ModelAndView updateCategory(@ModelAttribute("category") Category category) {
-        MultipartFile multipartFile = category.getAvatar();
-        Cloudinary cloudinary = new Cloudinary(CLOUDINARY_URL);
+        MultipartFile multipartFile;
+        multipartFile= category.getAvatar();
+        Cloudinary cloudinary;
+        cloudinary= new Cloudinary(CLOUDINARY_URL);
         try{
             File imgFile = File.createTempFile("test", multipartFile.getOriginalFilename()).toPath().toFile();
             multipartFile.transferTo(imgFile);
@@ -115,36 +117,15 @@ public class CategoryController {
         return new ModelAndView("redirect:/categories", "category", new Category());
 
     }
-    //    @GetMapping("/delete/{id}")
-//    public ModelAndView showDeleteForm(@PathVariable Long id) {
-//       Optional<Category> category = iCategoryService.findOne(id);
-//        if(category != null) {
-//            ModelAndView modelAndView = new ModelAndView("/category/delete");
-//            modelAndView.addObject("category", category);
-//            return modelAndView;
-//
-//        }else {
-////            ModelAndView modelAndView = new ModelAndView("/error.404");
-//            ModelAndView modelAndView = new ModelAndView("/category/loi");
-//            return modelAndView;
-//        }
-//    }
+
     @GetMapping("/delete/{id}")
     public String showFormDelete(@PathVariable Long id){
-        Optional<Category> product = iCategoryService.findById(id);
-        if (product.isPresent()){
+        Optional<Category> category = iCategoryService.findById(id);
+        if (category.isPresent()){
             iCategoryService.remove(id);
         }else
             return "error";
         return "redirect:/categories";
     }
-//    @PostMapping("/delete")
-//    public String deleteCategory(@ModelAttribute("category") Category category) {
-//        iCategoryService.remove(category.getId());
-//        return "redirect:categories";
-//    }
-//    public ModelAndView showInputNotAcceptable() {
-//        return new ModelAndView("/category/exption");
-//    }
 
 }

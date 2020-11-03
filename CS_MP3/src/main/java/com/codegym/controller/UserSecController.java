@@ -14,10 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
@@ -90,6 +87,12 @@ public class UserSecController {
         return "redirect:/userprofile";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteSong(@PathVariable("id") Long id){
+        appUserService.remove(id);
+        return "redirect:/admin";
+    }
+
     @GetMapping("/userprofile")
     public String getUserProfile(Model model){
         AppUser appUser = appUserService.findByUsername(getPrincipal());
@@ -110,18 +113,18 @@ public class UserSecController {
 
     @GetMapping("/register")
     public String registerForm(Model model){
-        model.addAttribute("user", new AppUser());
+        model.addAttribute("userRegister", new AppUser());
         return "user/register";
     }
 
     @PostMapping("/register")
-    public String register(@Valid @ModelAttribute("user") AppUser appUser, BindingResult bindingResult){
+    public String register(@Valid @ModelAttribute("userRegister") AppUser appUser, BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             return "user/register";
         }else {
             appUserService.save(appUser);
+            return "user/login";
         }
-        return "user/login";
     }
 
     @GetMapping("")

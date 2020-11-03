@@ -733,7 +733,6 @@
                                         <th class="text-center">Address</th>
                                         <th class="text-center">Username</th>
                                         <th class="text-center">Password</th>
-                                        <th class="text-center">Details</th>
                                         <th class="text-center">Delete</th>
                                     </tr>
                                     </thead>
@@ -762,10 +761,7 @@
                                             <div class="badge badge-info" th:text="${user.password}"></div>
                                         </td>
                                         <td class="text-center">
-                                            <a class="btn-wide btn btn-success">Details</a>
-                                        </td>
-                                        <td class="text-center">
-                                            <a class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
+                                            <a th:href="@{'/delete/'+ ${user.id}}" class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i
                                                     class="fas fa-trash btn-icon-wrapper"> </i></a>
                                         </td>
                                     </tr>
